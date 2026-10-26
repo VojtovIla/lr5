@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Глиняный круг — авторская керамика</title>
+<meta name="description" content="Мастерская авторской керамики «Глиняный круг»: ручная посуда, декор и подарки. Мастер-классы для взрослых и детей от 6 лет.">
+<meta property="og:title" content="Глиняный круг — авторская керамика и мастер-классы">
+<meta property="og:description" content="Ручная посуда, декор и подарки. Мастер-классы для взрослых и детей от 6 лет в Санкт-Петербурге.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://glinyany-krug.ru">
+<meta property="og:image" content="https://glinyany-krug.ru/og-image.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   1. RESET
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+
+body,
+h1, h2, h3, h4,
+p, figure, blockquote, dl, dd,
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul[class],
+ol[class] { list-style: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+a { color: inherit; }
+
+/* ==========================================================================
+   2. ПЕРЕМЕННЫЕ
+   ========================================================================== */
+:root {
+  /* Палитра */
+  --clay-dark:  #5C3D2E;
+  --clay:       #A0522D;
+  --clay-light: #C68B59;
+  --sand:       #E8D5B7;
+  --cream:      #FDF6EC;
+  --warm-white: #FFFDF9;
+  --text:       #3B2F2F;
+  --text-muted: #7A6555;
+
+  /* Типографика */
+  --font-head: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-body: 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Геометрия и тени */
+  --radius:      16px;
+  --radius-sm:   12px;
+  --radius-lg:   20px;
+  --shadow-soft: 0 6px 18px rgba(92, 61, 46, .10);
+  --shadow-mid:  0 10px 26px rgba(92, 61, 46, .14);
+  --shadow-hover:0 16px 36px rgba(92, 61, 46, .22);
+
+  /* Отступы */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section-pad: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+/* ==========================================================================
+   3. БАЗОВЫЕ СТИЛИ
+   ========================================================================== */
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+  background-color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  color: var(--clay-dark);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+p { max-width: 68ch; }
+
+a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+:focus-visible {
+  outline: 3px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   4. УТИЛИТЫ
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-pad); }
+
+.section--sand  { background-color: var(--sand); }
+.section--cream { background-color: var(--cream); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   5. КОМПОНЕНТЫ
+   ========================================================================== */
+
+/* --- Кнопки ------------------------------------------------------------- */
+/* Примечание по доступности: белый текст на --clay-light даёт контраст 2.9:1,
+   что ниже требований WCAG AA (4.5:1). Поэтому базовая кнопка использует
+   --clay (5.6:1), а ховер — --clay-dark (9.7:1). */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .9rem 1.65rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .3s ease, color .3s ease,
+              transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.btn-primary {
+  background-color: var(--clay);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .07) 0 3px,
+    transparent 3px 6px
+  );
+  color: var(--warm-white);
+  box-shadow: 0 6px 16px rgba(92, 61, 46, .22),
+              inset 0 1px 0 rgba(255, 255, 255, .18);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--clay-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(92, 61, 46, .30);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--clay-dark);
+  border-color: rgba(160, 82, 45, .55);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background-color: rgba(198, 139, 89, .18);
+  border-color: var(--clay);
+  transform: translateY(-2px);
+}
+
+.btn-block { width: 100%; }
+
+/* --- Формы -------------------------------------------------------------- */
+.form-field { display: flex; flex-direction: column; gap: .4rem; }
+
+.form-field label,
+.form-label {
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--clay-dark);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: .85rem 1rem;
+  border: 1px solid rgba(160, 82, 45, .35);
+  border-radius: var(--radius-sm);
+  background-color: var(--warm-white);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+textarea { resize: vertical; min-height: 7rem; }
+
+input::placeholder,
+textarea::placeholder { color: #A89684; }
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(198, 139, 89, .30);
+}
+
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border-color: #B4553F;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: .2rem;
+  flex: 0 0 auto;
+  accent-color: var(--clay);
+}
+
+/* --- Заголовки секций --------------------------------------------------- */
+.section-head {
+  max-width: 46rem;
+  margin: 0 auto clamp(2rem, 5vw, 3.25rem);
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  margin-bottom: .5rem;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--clay-light), transparent);
+}
+
+.section-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   6. ШАПКА И НАВИГАЦИЯ
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(253, 246, 236, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(160, 82, 45, .15);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.25rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--clay-dark);
+  letter-spacing: .01em;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: 2px solid var(--clay-light);
+  background:
+    radial-gradient(circle at 35% 30%, var(--warm-white), var(--sand) 60%, var(--clay-light));
+  color: var(--clay-dark);
+  font-size: .95rem;
+  line-height: 1;
+}
+
+/* Бургер (кнопка с aria-expanded) */
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: .6rem;
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+.nav-burger:hover { background-color: rgba(198, 139, 89, .18); }
+
+.nav-burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background-color: var(--clay-dark);
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Мобильное меню */
+.main-nav {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: var(--cream);
+  border-bottom: 1px solid rgba(160, 82, 45, .18);
+  box-shadow: var(--shadow-soft);
+}
+
+.main-nav.is-open { display: block; }
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: .75rem var(--gutter) 1.25rem;
+}
+
+.nav-list a {
+  display: block;
+  padding: .6rem .25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--clay-dark);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(160, 82, 45, .10);
+  transition: color .3s ease, padding-left .3s ease;
+}
+
+.nav-list a:hover { color: var(--clay); padding-left: .6rem; }
+
+/* ==========================================================================
+   7. СЕКЦИЯ 1 — HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+  background-color: var(--cream);
+}
+
+/* Тёплая «глиняная» подложка из градиентов */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(198, 139, 89, .35), transparent 45%),
+    radial-gradient(circle at 88% 6%, rgba(160, 82, 45, .20), transparent 45%),
+    radial-gradient(circle at 78% 92%, rgba(232, 213, 183, .85), transparent 55%),
+    radial-gradient(circle at 35% 85%, rgba(198, 139, 89, .16), transparent 45%);
+}
+
+/* Фактура глины — тонкий повторяющийся паттерн */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .55;
+  background-image:
+    repeating-radial-gradient(circle at 20% 30%,
+      rgba(92, 61, 46, .045) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(115deg,
+      rgba(255, 253, 249, .35) 0 2px, transparent 2px 9px);
+}
+
+/* Декоративный «гончарный круг» */
+.hero-decor {
+  position: absolute;
+  right: -10%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  width: min(62vw, 34rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: .85;
+  background-image:
+    repeating-radial-gradient(circle at 50% 50%,
+      rgba(160, 82, 45, .12) 0 2px, transparent 2px 16px),
+    radial-gradient(circle at 38% 32%,
+      rgba(255, 253, 249, .95),
+      rgba(232, 213, 183, .70) 42%,
+      rgba(198, 139, 89, .48) 74%,
+      rgba(160, 82, 45, .22) 100%);
+  box-shadow: inset 0 0 70px rgba(92, 61, 46, .14);
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+.hero-kicker {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: .35rem .9rem;
+  border: 1px solid rgba(160, 82, 45, .35);
+  border-radius: 999px;
+  background-color: rgba(255, 253, 249, .7);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 12vw, 6rem);
+  line-height: .95;
+  letter-spacing: -.01em;
+  margin-bottom: .75rem;
+}
+
+.hero-slogan {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: clamp(1.25rem, 4vw, 1.85rem);
+  line-height: 1.35;
+  color: var(--clay);
+  max-width: 22ch;
+  margin-bottom: 1.25rem;
+}
+
+.hero-text {
+  font-size: clamp(1rem, 2.4vw, 1.125rem);
+  color: var(--text-muted);
+  max-width: 46ch;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+}
+
+/* ==========================================================================
+   8. СЕКЦИЯ 2 — О МАСТЕРСКОЙ
+   ========================================================================== */
+.about-text {
+  max-width: 60rem;
+  margin: 0 auto clamp(2.25rem, 5vw, 3.25rem);
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.about-text p + p { margin-top: 1rem; }
+
+.features {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+.feature {
+  padding: 1.75rem 1.5rem;
+  background-color: var(--warm-white);
+  border: 1px solid rgba(160, 82, 45, .10);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-mid);
+}
+
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: .9rem;
+  border-radius: 50%;
+  background-color: rgba(198, 139, 89, .20);
+  border: 1px solid rgba(160, 82, 45, .18);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--clay-dark);
+}
+
+.feature-title {
+  font-size: 1.35rem;
+  margin-bottom: .35rem;
+}
+
+.feature-text {
+  font-size: .95rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   9. СЕКЦИЯ 3 — КАТАЛОГ
+   ========================================================================== */
+.catalog-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--warm-white);
+  border: 1px solid rgba(160, 82, 45, .12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-media { margin: 0; }
+
+/* CSS-заглушка изображения */
+.ph {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  aspect-ratio: 4 / 3;
+  background-color: var(--sand);
+  background-image:
+    radial-gradient(circle at 30% 25%, rgba(255, 253, 249, .95), transparent 55%),
+    radial-gradient(circle at 76% 82%, rgba(160, 82, 45, .24), transparent 55%),
+    repeating-linear-gradient(45deg,
+      rgba(255, 253, 249, .40) 0 6px, transparent 6px 13px);
+  color: var(--clay-dark);
+}
+
+/* Лёгкое разнообразие текстур у чётных карточек */
+.card:nth-child(2n) .ph {
+  background-image:
+    radial-gradient(circle at 72% 28%, rgba(255, 253, 249, .95), transparent 55%),
+    radial-gradient(circle at 24% 78%, rgba(160, 82, 45, .24), transparent 55%),
+    repeating-linear-gradient(-45deg,
+      rgba(255, 253, 249, .40) 0 6px, transparent 6px 13px);
+}
+
+.ph-icon {
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  line-height: 1;
+}
+
+.ph-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: .5rem;
+  padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.card-title {
+  font-size: 1.4rem;
+}
+
+.card-desc {
+  flex: 1;
+  font-size: .95rem;
+  color: var(--text-muted);
+}
+
+.card-price {
+  margin-top: .25rem;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(160, 82, 45, .16);
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--clay-dark);
+}
+
+/* ==========================================================================
+   10. СЕКЦИЯ 4 — МАСТЕР-КЛАССЫ
+   ========================================================================== */
+.workshop-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.workshop {
+  padding: 1.75rem 1.6rem;
+  background-color: var(--warm-white);
+  border: 1px solid rgba(160, 82, 45, .12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.workshop-title {
+  font-size: 1.65rem;
+  margin-bottom: .6rem;
+}
+
+.workshop-text {
+  font-size: .97rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.workshop-list {
+  display: grid;
+  gap: .45rem;
+  font-size: .95rem;
+}
+
+.workshop-list li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.workshop-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: .7rem;
+  line-height: 1.9;
+  color: var(--clay-light);
+}
+
+/* Расписание */
+.schedule-wrap {
+  position: relative;
+  overflow-x: auto;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  background-color: var(--warm-white);
+}
+
+/* Градиентное затухание справа — подсказка о горизонтальном скролле */
+.schedule-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, transparent, var(--warm-white));
+  pointer-events: none;
+}
+
+.schedule {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: .95rem;
+}
+
+.schedule caption { text-align: left; }
+
+.schedule th,
+.schedule td {
+  padding: .95rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(160, 82, 45, .14);
+}
+
+.schedule thead th {
+  background-color: rgba(198, 139, 89, .22);
+  font-family: var(--font-body);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--clay-dark);
+}
+
+.schedule tbody th {
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--clay-dark);
+}
+
+.schedule tbody tr:last-child th,
+.schedule tbody tr:last-child td { border-bottom: none; }
+
+.schedule td:last-child { font-weight: 700; color: var(--clay); }
+
+/* Форма записи */
+.booking-form {
+  max-width: 46rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background-color: var(--warm-white);
+  border: 1px solid rgba(160, 82, 45, .14);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-mid);
+}
+
+.form-title {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  margin-bottom: .4rem;
+}
+
+.form-note {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+}
+
+.form-field--full { grid-column: 1 / -1; }
+
+/* ==========================================================================
+   11. СЕКЦИЯ 5 — ПРОЦЕСС СОЗДАНИЯ
+   ========================================================================== */
+.timeline {
+  position: relative;
+  padding: 0;
+}
+
+/* Вертикальная линия (мобильная версия) */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: .75rem;
+  bottom: .75rem;
+  width: 2px;
+  background: linear-gradient(180deg,
+    rgba(198, 139, 89, .25),
+    var(--clay-light) 12%,
+    var(--clay-light) 88%,
+    rgba(198, 139, 89, .25));
+}
+
+.step {
+  position: relative;
+  padding-left: 3.75rem;
+  padding-bottom: 2rem;
+}
+
+.step:last-child { padding-bottom: 0; }
+
+.step-num {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--warm-white);
+  border: 2px solid var(--clay-light);
+  color: var(--clay-dark);
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-soft);
+}
+
+.step-title {
+  font-size: 1.3rem;
+  margin-bottom: .25rem;
+}
+
+.step-text {
+  font-size: .93rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   12. СЕКЦИЯ 6 — КОНТАКТЫ И ПОДВАЛ
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  padding-block: clamp(3rem, 7vw, 5rem) 2rem;
+  background-color: var(--clay-dark);
+  color: var(--sand);
+  overflow: hidden;
+}
+
+/* Тонкая фактура на тёмном фоне */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .5;
+  background-image:
+    radial-gradient(circle at 85% 15%, rgba(198, 139, 89, .22), transparent 45%),
+    repeating-linear-gradient(120deg,
+      rgba(255, 253, 249, .03) 0 2px, transparent 2px 10px);
+}
+
+.footer-inner { position: relative; z-index: 1; }
+
+.footer-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: 1fr;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.footer-title {
+  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.footer-subtitle {
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.footer-address {
+  font-style: normal;
+  display: grid;
+  gap: .65rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-address p { max-width: 34ch; }
+
+.footer-address a {
+  color: var(--cream);
+  text-decoration-color: rgba(232, 213, 183, .45);
+  transition: color .3s ease;
+}
+
+.footer-address a:hover { color: var(--clay-light); }
+
+.footer-label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(232, 213, 183, .65);
+}
+
+/* Соцсети */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 213, 183, .35);
+  background-color: rgba(253, 246, 236, .08);
+  color: var(--cream);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-decoration: none;
+  transition: background-color .3s ease, transform .3s ease,
+              border-color .3s ease, color .3s ease;
+}
+
+.social:hover,
+.social:focus-visible {
+  background-color: var(--clay-light);
+  border-color: var(--clay-light);
+  color: var(--clay-dark);
+  transform: translateY(-3px);
+}
+
+/* Форма в подвале */
+.feedback-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.feedback-form .form-field label { color: var(--sand); }
+
+.feedback-form input,
+.feedback-form textarea {
+  background-color: var(--warm-white);
+  border-color: rgba(232, 213, 183, .45);
+  color: var(--text);
+}
+
+.feedback-form .btn { justify-self: start; }
+
+/* Нижняя полоса подвала */
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(232, 213, 183, .22);
+  font-size: .85rem;
+  color: #CBB79A;
+}
+
+.footer-bottom p { max-width: none; }
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-nav a {
+  color: #CBB79A;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+
+.footer-nav a:hover { color: var(--cream); text-decoration: underline; }
+
+.to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .45rem .9rem;
+  border: 1px solid rgba(232, 213, 183, .35);
+  border-radius: 999px;
+  color: var(--cream);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color .3s ease, transform .3s ease, color .3s ease;
+}
+
+.to-top:hover {
+  background-color: var(--clay-light);
+  border-color: var(--clay-light);
+  color: var(--clay-dark);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   13. МЕДИАЗАПРОСЫ
+   ========================================================================== */
+
+/* --- Планшет ≥ 768px ---------------------------------------------------- */
+@media (min-width: 768px) {
+
+  /* Навигация становится горизонтальной */
+  .nav-burger { display: none; }
+
+  .main-nav {
+    display: block;
+    position: static;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 0;
+  }
+
+  .nav-list a {
+    padding: .25rem 0;
+    border-bottom: 2px solid transparent;
+    font-size: .95rem;
+  }
+
+  .nav-list a:hover {
+    padding-left: 0;
+    border-bottom-color: var(--clay-light);
+  }
+
+  /* На десктопе скролл таблицы не нужен — прячем подсказку */
+  .schedule-wrap::after { display: none; }
+
+  /* Сетки */
+  .features { grid-template-columns: repeat(3, 1fr); }
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+  .workshop-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+
+  .hero-slogan { max-width: 26ch; }
+}
+
+/* --- Десктоп ≥ 1024px --------------------------------------------------- */
+@media (min-width: 1024px) {
+
+  .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .hero { padding-block: 7rem 8rem; }
+
+  /* Горизонтальная timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.25rem;
+  }
+
+  .timeline::before {
+    left: 8%;
+    right: 8%;
+    top: 1.25rem;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    background: linear-gradient(90deg,
+      rgba(198, 139, 89, .25),
+      var(--clay-light) 15%,
+      var(--clay-light) 85%,
+      rgba(198, 139, 89, .25));
+  }
+
+  .step {
+    padding: 3.75rem 0 0;
+    text-align: center;
+  }
+
+  .step-num {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .step-text { font-size: .9rem; }
+}
+
+/* --- Большие экраны ≥ 1280px -------------------------------------------- */
+@media (min-width: 1280px) {
+  .hero-decor { right: -4%; }
+}
+
+/* ==========================================================================
+   14. АНИМАЦИИ
+   ========================================================================== */
+
+/* Плавное появление при скролле.
+   Используем свойство `translate`, чтобы не конфликтовать
+   с `transform` в hover-эффектах карточек. */
+.reveal {
+  opacity: 0;
+  translate: 0 26px;
+  transition: opacity .7s ease, translate .7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Уважение к настройкам пользователя */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms;
+    animation-iteration-count: 1;
+    transition-duration: .001ms;
+    scroll-behavior: auto;
+  }
+
+  .reveal { opacity: 1; translate: 0 0; }
+
+  .card:hover,
+  .card:focus-within { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     ШАПКА С НАВИГАЦИЕЙ
+     ========================================================================== -->
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="logo" href="#hero">
+      <span class="logo-mark" aria-hidden="true">◯</span>
+      <span>Глиняный круг</span>
+    </a>
+
+    <!-- Бургер-меню (кнопка с aria-expanded) -->
+    <button class="nav-burger" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        <li><a href="#about">О мастерской</a></li>
+        <li><a href="#catalog">Каталог</a></li>
+        <li><a href="#workshops">Мастер-классы</a></li>
+        <li><a href="#process">Процесс</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- ========================================================================
+       СЕКЦИЯ 1 — HERO
+       ======================================================================== -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+
+    <div class="hero-decor" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <p class="hero-kicker">Мастерская авторской керамики</p>
+
+      <h1 class="hero-title" id="hero-title">Глиняный круг</h1>
+
+      <p class="hero-slogan">Каждое изделие — история, рассказанная глиной</p>
+
+      <p class="hero-text">
+        Лепим посуду, вазы и подарки вручную — маленькими партиями, без спешки
+        и конвейера. Приходите выбрать свою чашку или слепите её сами
+        в нашей мастерской.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#workshops">Записаться на мастер-класс</a>
+        <a class="btn btn-outline" href="#catalog">Смотреть каталог</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================
+       СЕКЦИЯ 2 — О МАСТЕРСКОЙ
+       ======================================================================== -->
+  <section class="section section--sand" id="about" aria-labelledby="about-title">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <h2 class="section-title" id="about-title">О мастерской</h2>
+        <p class="section-sub">Небольшая студия, где глина становится вещами, которые хочется держать в руках</p>
+      </div>
+
+      <div class="about-text reveal">
+        <p>
+          «Глиняный круг» начался в 2016 году с одной гончарной машины, мешка глины
+          и большого желания делать честные вещи. Сегодня мы — маленькая мастерская,
+          где каждый предмет лепится, сушится, обжигается и глазируется вручную.
+        </p>
+        <p>
+          Мы верим в slow-living: в то, что у вещи есть вес, характер и след руки мастера.
+          Поэтому у нас не бывает двух одинаковых кружек — и это самое ценное.
+        </p>
+      </div>
+
+      <ul class="features">
+        <li class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">✋</span>
+          <h3 class="feature-title">100 % ручная работа</h3>
+          <p class="feature-text">
+            Никаких фабричных форм: только руки, гончарный круг и немного терпения.
+          </p>
+        </li>
+
+        <li class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">🌿</span>
+          <h3 class="feature-title">Натуральные глазури</h3>
+          <p class="feature-text">
+            Пищевые глазури без свинца и вредных добавок — безопасно для еды и детей.
+          </p>
+        </li>
+
+        <li class="feature reveal">
+          <span class="feature-icon" aria-hidden="true">✦</span>
+          <h3 class="feature-title">Каждое изделие уникально</h3>
+          <p class="feature-text">
+            Повторить одну и ту же чашку невозможно — вы получаете единственный экземпляр.
+          </p>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       СЕКЦИЯ 3 — КАТАЛОГ ИЗДЕЛИЙ
+       ======================================================================== -->
+  <section class="section section--cream" id="catalog" aria-labelledby="catalog-title">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <h2 class="section-title" id="catalog-title">Каталог изделий</h2>
+        <p class="section-sub">
+          Всё, что вы видите, сделано вручную и есть в единственном экземпляре.
+          Цвет глазури может немного отличаться — это нормально для живого материала.
+        </p>
+      </div>
+
+      <div class="catalog-grid">
+
+        <!-- Карточка 1 -->
+        <article class="card reveal">
+          <figure class="card-media">
+            <div class="ph" role="img" aria-label="Кружка «Утренний свет»: ручная керамика медового оттенка">
+              <span class="ph-icon" aria-hidden="true">☕</span>
+              <span class="ph-label" aria-hidden="true">фото изделия</span>
+            </div>
+            <figcaption class="visually-hidden">Кружка «Утренний свет», 350 мл</figcaption>
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">Кружка «Утренний свет»</h3>
+            <p class="card-desc">
+              Лепка на круге, медово-песочная глазурь, удобная ручка под три пальца.
+              Объём 350 мл.
+            </p>
+            <p class="card-price">1 400 ₽</p>
+          </div>
+        </article>
+
+        <!-- Карточка 2 -->
+        <article class="card reveal">
+          <figure class="card-media">
+            <div class="ph" role="img" aria-label="Тарелка «Песчаный берег»: керамическая тарелка с фактурой песка">
+              <span class="ph-icon" aria-hidden="true">🍽</span>
+              <span class="ph-label" aria-hidden="true">фото изделия</span>
+            </div>
+            <figcaption class="visually-hidden">Тарелка «Песчаный берег», диаметр 22 см</figcaption>
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">Тарелка «Песчаный берег»</h3>
+            <p class="card-desc">
+              Диаметр 22 см. Фактура песка под прозрачной глазурью — приятно резать
+              и просто красиво на столе.
+            </p>
+            <p class="card-price">1 900 ₽</p>
+          </div>
+        </article>
+
+        <!-- Карточка 3 -->
+        <article class="card reveal">
+          <figure class="card-media">
+            <div class="ph" role="img" aria-label="Ваза «Тёплый вечер»: интерьерная ваза из терракоты">
+              <span class="ph-icon" aria-hidden="true">🏺</span>
+              <span class="ph-label" aria-hidden="true">фото изделия</span>
+            </div>
+            <figcaption class="visually-hidden">Ваза «Тёплый вечер», высота 28 см</figcaption>
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">Ваза «Тёплый вечер»</h3>
+            <p class="card-desc">
+              Высота 28 см, матовая терракотовая поверхность. Держит и сухие,
+              и свежие цветы.
+            </p>
+            <p class="card-price">3 200 ₽</p>
+          </div>
+        </article>
+
+        <!-- Карточка 4 -->
+        <article class="card reveal">
+          <figure class="card-media">
+            <div class="ph" role="img" aria-label="Подсвечник «Очаг»: керамический подсвечник с эффектом кракле">
+              <span class="ph-icon" aria-hidden="true">🕯</span>
+              <span class="ph-label" aria-hidden="true">фото изделия</span>
+            </div>
+            <figcaption class="visually-hidden">Подсвечник «Очаг», пара</figcaption>
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">Подсвечник «Очаг»</h3>
+            <p class="card-desc">
+              Пара подсвечников под стандартную свечу. Обжиг с эффектом кракле —
+              тонкая сетка на поверхности.
+            </p>
+            <p class="card-price">900 ₽</p>
+          </div>
+        </article>
+
+        <!-- Карточка 5 -->
+        <article class="card reveal">
+          <figure class="card-media">
+            <div class="ph" role="img" aria-label="Кашпо «Лесная тень»: керамическое кашпо с дренажным отверстием">
+              <span class="ph-icon" aria-hidden="true">🪴</span>
+              <span class="ph-label" aria-hidden="true">фото изделия</span>
+            </div>
+            <figcaption class="visually-hidden">Кашпо «Лесная тень» для растений до 12 см</figcaption>
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">Кашпо «Лесная тень»</h3>
+            <p class="card-desc">
+              С дренажным отверстием и поддоном. Подойдёт для растений в горшке
+              до 12 см.
+            </p>
+            <p class="card-price">2 400 ₽</p>
+          </div>
+        </article>
+
+        <!-- Карточка 6 -->
+        <article class="card reveal">
+          <figure class="card-media">
+            <div class="ph" role="img" aria-label="Подарочный набор «Двое»: две кружки и блюдце в упаковке">
+              <span class="ph-icon" aria-hidden="true">🎁</span>
+              <span class="ph-label" aria-hidden="true">фото изделия</span>
+            </div>
+            <figcaption class="visually-hidden">Подарочный набор «Двое»</figcaption>
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">Набор «Двое»</h3>
+            <p class="card-desc">
+              Две кружки и блюдце в крафтовой упаковке с открыткой. Готов к подарку
+              в день покупки.
+            </p>
+            <p class="card-price">4 500 ₽</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       СЕКЦИЯ 4 — МАСТЕР-КЛАССЫ
+       ======================================================================== -->
+  <section class="section section--sand" id="workshops" aria-labelledby="workshops-title">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <h2 class="section-title" id="workshops-title">Мастер-классы</h2>
+        <p class="section-sub">
+          Два часа без телефона, с глиной в руках. Уходите с готовым изделием —
+          мы обожжём его и отдадим вам через две недели.
+        </p>
+      </div>
+
+      <div class="workshop-grid">
+
+        <article class="workshop reveal">
+          <h3 class="workshop-title">Для взрослых</h3>
+          <p class="workshop-text">
+            Спокойный вечер за гончарным кругом: знакомимся с глиной, центруем,
+            вытягиваем стенки и делаем свою кружку или миску. Опыт не нужен —
+            мастер подскажет на каждом этапе.
+          </p>
+          <ul class="workshop-list">
+            <li>Группа до 6 человек</li>
+            <li>Материалы и обжиг включены</li>
+            <li>Можно прийти одному или парой</li>
+          </ul>
+        </article>
+
+        <article class="workshop reveal">
+          <h3 class="workshop-title">Для детей и родителей</h3>
+          <p class="workshop-text">
+            Лепка руками без круга: зверушки, тарелочки и забавная посуда.
+            Взрослый работает вместе с ребёнком — получается семейный проект,
+            а не «занятие по расписанию».
+          </p>
+          <ul class="workshop-list">
+            <li>Дети от 6 лет вместе с родителем</li>
+            <li>Один билет — на двоих</li>
+            <li>Фартуки и влажные салфетки — наши</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <!-- Расписание -->
+      <div class="schedule-wrap reveal">
+        <table class="schedule">
+          <caption class="visually-hidden">Расписание и стоимость мастер-классов</caption>
+          <thead>
+            <tr>
+              <th scope="col">Формат</th>
+              <th scope="col">Дни</th>
+              <th scope="col">Длительность</th>
+              <th scope="col">Стоимость</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Взрослые</th>
+              <td>среда, пятница, суббота</td>
+              <td>2,5 часа</td>
+              <td>3 500 ₽</td>
+            </tr>
+            <tr>
+              <th scope="row">Дети 6+ с родителем</th>
+              <td>суббота, воскресенье</td>
+              <td>1,5 часа</td>
+              <td>2 200 ₽</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Форма записи -->
+      <form class="booking-form reveal" action="#" method="post">
+        <h3 class="form-title">Записаться на мастер-класс</h3>
+        <p class="form-note">
+          Оставьте контакты — перезвоним в течение дня, подтвердим дату и всё расскажем.
+        </p>
+
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label for="bk-name">Имя</label>
+            <input
+              type="text"
+              id="bk-name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="40"
+              pattern="[А-Яа-яЁёA-Za-z\s\-]{2,40}"
+              autocomplete="name"
+              placeholder="Как к вам обращаться">
+          </div>
+
+          <div class="form-field">
+            <label for="bk-phone">Телефон</label>
+            <input
+              type="tel"
+              id="bk-phone"
+              name="phone"
+              required
+              pattern="\+?[0-9\s\-\(\)]{10,18}"
+              autocomplete="tel"
+              placeholder="+7 900 000-00-00">
+          </div>
+
+          <div class="form-field">
+            <label for="bk-email">E-mail</label>
+            <input
+              type="email"
+              id="bk-email"
+              name="email"
+              required
+              autocomplete="email"
+              placeholder="you@example.com">
+          </div>
+
+          <div class="form-field">
+            <label for="bk-class">Выберите мастер-класс</label>
+            <select id="bk-class" name="workshop" required>
+              <option value="" selected disabled>— выберите вариант —</option>
+              <option value="adults-intro">Взрослые: первое знакомство с кругом</option>
+              <option value="adults-pair">Взрослые: парный мастер-класс</option>
+              <option value="kids">Дети 6+ с родителем</option>
+            </select>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label class="checkbox-label" for="bk-consent">
+              <input type="checkbox" id="bk-consent" name="consent" required>
+              <span>Согласен(а) на обработку персональных данных</span>
+            </label>
+          </div>
+
+          <div class="form-field form-field--full">
+            <button type="submit" class="btn btn-primary btn-block">Записаться</button>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       СЕКЦИЯ 5 — ПРОЦЕСС СОЗДАНИЯ
+       ======================================================================== -->
+  <section class="section section--cream" id="process" aria-labelledby="process-title">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <h2 class="section-title" id="process-title">Как рождается изделие</h2>
+        <p class="section-sub">
+          От куска глины до готовой чашки проходит около трёх недель.
+          Вот что случается за это время.
+        </p>
+      </div>
+
+      <ol class="timeline">
+
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3 class="step-title">Замес глины</h3>
+          <p class="step-text">
+            Смешиваем несколько сортов глины с водой и вымешиваем до однородной,
+            пластичной массы без пузырьков воздуха.
+          </p>
+        </li>
+
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3 class="step-title">Формовка</h3>
+          <p class="step-text">
+            На гончарном круге или руками придаём глине форму будущего изделия.
+          </p>
+        </li>
+
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3 class="step-title">Сушка</h3>
+          <p class="step-text">
+            Заготовка медленно сохнет от трёх до семи дней — так не появляются трещины.
+          </p>
+        </li>
+
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">4</span>
+          <h3 class="step-title">Обжиг</h3>
+          <p class="step-text">
+            Первый обжиг при 950 °C превращает мягкую глину в прочный черепок.
+          </p>
+        </li>
+
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">5</span>
+          <h3 class="step-title">Глазировка</h3>
+          <p class="step-text">
+            Окунаем изделие в глазурь — именно она даёт цвет и гладкую поверхность.
+          </p>
+        </li>
+
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">6</span>
+          <h3 class="step-title">Финальный обжиг</h3>
+          <p class="step-text">
+            Второй обжиг при 1230 °C закрепляет глазурь и делает посуду пригодной для еды.
+          </p>
+        </li>
+
+      </ol>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     СЕКЦИЯ 6 — КОНТАКТЫ И ПОДВАЛ
+     ========================================================================== -->
+<footer class="site-footer" id="contacts" aria-labelledby="contacts-title">
+  <div class="container footer-inner">
+
+    <div class="footer-grid">
+
+      <!-- Контакты -->
+      <div class="footer-col">
+        <h2 class="footer-title" id="contacts-title">Контакты</h2>
+
+        <address class="footer-address">
+          <p>
+            <span class="footer-label">Адрес</span>
+            г. Санкт-Петербург, ул. Гончарная, 14<br>
+            вход со двора, второй этаж
+          </p>
+          <p>
+            <span class="footer-label">Часы работы</span>
+            вторник – воскресенье, 11:00–20:00<br>
+            понедельник — выходной
+          </p>
+          <p>
+            <span class="footer-label">Телефон</span>
+            <a href="tel:+79219998877">+7 (921) 999-88-77</a>
+          </p>
+          <p>
+            <span class="footer-label">E-mail</span>
+            <a href="mailto:hello@glinyany-krug.ru">hello@glinyany-krug.ru</a>
+          </p>
+        </address>
+
+        <ul class="socials">
+          <li>
+            <a class="social" href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Мы в Telegram">
+              <span aria-hidden="true">✈</span>
+            </a>
+          </li>
+          <li>
+            <a class="social" href="https://vk.com/" target="_blank" rel="noopener noreferrer" aria-label="Мы во ВКонтакте">
+              <span aria-hidden="true">VK</span>
+            </a>
+          </li>
+          <li>
+            <a class="social" href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp">
+              <span aria-hidden="true">✆</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Мини-форма обратной связи -->
+      <div class="footer-col">
+        <h3 class="footer-subtitle">Напишите нам</h3>
+
+        <form class="feedback-form" action="#" method="post">
+
+          <div class="form-field">
+            <label for="fb-name">Имя</label>
+            <input
+              type="text"
+              id="fb-name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="40"
+              placeholder="Ваше имя">
+          </div>
+
+          <div class="form-field">
+            <label for="fb-message">Сообщение</label>
+            <textarea
+              id="fb-message"
+              name="message"
+              rows="4"
+              required
+              minlength="10"
+              maxlength="800"
+              placeholder="Расскажите, что хотите заказать или спросить"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Написать</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Нижняя полоса -->
+    <div class="footer-bottom">
+      <p>© 2025 Мастерская «Глиняный круг». Каждое изделие создано вручную.</p>
+
+      <nav class="footer-nav" aria-label="Навигация в подвале">
+        <a href="#catalog">Каталог</a>
+        <a href="#workshops">Мастер-классы</a>
+        <a href="#process">Процесс</a>
+      </nav>
+
+      <a class="to-top" href="#hero">Наверх ↑</a>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   Минимальный vanilla JS
+   ========================================================================== */
+
+/* 1. Плавное появление блоков при скролле */
+(function () {
+  var elements = document.querySelectorAll('.reveal');
+
+  // Если IntersectionObserver не поддерживается — просто показываем всё
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  elements.forEach(function (el) { observer.observe(el); });
+})();
+
+/* 2. Переключение мобильного меню по кнопке-бургеру */
+(function () {
+  var burger = document.querySelector('.nav-burger');
+  var nav = document.getElementById('main-nav');
+  if (!burger || !nav) return;
+
+  burger.addEventListener('click', function () {
+    var isOpen = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!isOpen));
+    nav.classList.toggle('is-open', !isOpen);
+  });
+})();
+
+/* 3. Закрываем мобильное меню после клика по ссылке-якорю */
+(function () {
+  var burger = document.querySelector('.nav-burger');
+  var nav = document.getElementById('main-nav');
+  if (!burger || !nav) return;
+
+  document.querySelectorAll('.nav-list a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      burger.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

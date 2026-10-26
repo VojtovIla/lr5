@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Глиняный круг — авторская керамика ручной работы</title>
+  <meta name="description" content="Мастерская авторской керамики «Глиняный круг» — посуда, декор и творческие мастер-классы для взрослых и детей.">
+
+  <!-- Шрифты Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. RESET
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    input, select, textarea, button { font: inherit; color: inherit; }
+
+    /* =========================================================
+       2. CSS CUSTOM PROPERTIES
+       ========================================================= */
+    :root {
+      --clay-dark:    #5C3D2E;
+      --clay:         #A0522D;
+      --clay-light:   #C68B59;
+      --sand:         #E8D5B7;
+      --cream:        #FDF6EC;
+      --warm-white:   #FFFDF9;
+      --text:         #3B2F2F;
+      --text-muted:   #7A6555;
+
+      --shadow-soft: 0 6px 20px rgba(92, 61, 46, 0.10);
+      --shadow-hover: 0 14px 34px rgba(92, 61, 46, 0.18);
+
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 20px;
+
+      --container: 1180px;
+      --section-py: clamp(3.5rem, 8vw, 6.5rem);
+    }
+
+    /* =========================================================
+       3. BASE TYPOGRAPHY & BODY
+       ========================================================= */
+    body {
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background-color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      color: var(--clay-dark);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0.2px;
+    }
+
+    h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 500; }
+    h2 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.25rem, 2.5vw, 1.55rem); }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* =========================================================
+       4. LAYOUT UTILITIES
+       ========================================================= */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    section { padding: var(--section-py) 0; position: relative; }
+
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+    .section-head p { color: var(--text-muted); font-size: 1.05rem; }
+    .section-eyebrow {
+      display: inline-block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Чередование фонов секций */
+    .bg-cream { background-color: var(--cream); }
+    .bg-sand  { background-color: var(--sand); }
+    .bg-dark  { background-color: var(--clay-dark); color: var(--cream); }
+
+    /* =========================================================
+       5. HEADER & NAVIGATION
+       ========================================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(92, 61, 46, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--clay-dark);
+    }
+    .logo-mark {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--clay-light), var(--clay) 70%, var(--clay-dark));
+      box-shadow: inset -3px -4px 8px rgba(0,0,0,0.2), 0 2px 6px rgba(92,61,46,0.25);
+    }
+
+    .primary-nav ul {
+      display: flex;
+      gap: 2rem;
+    }
+    .primary-nav a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color 0.25s ease;
+    }
+    .primary-nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background-color: var(--clay);
+      transition: width 0.3s ease;
+    }
+    .primary-nav a:hover { color: var(--clay); }
+    .primary-nav a:hover::after { width: 100%; }
+
+    /* Бургер-меню (checkbox-hack) */
+    .nav-toggle { display: none; }
+    .burger {
+      display: none;
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background-color: var(--warm-white);
+      border: 1px solid rgba(92,61,46,0.15);
+      position: relative;
+      cursor: pointer;
+    }
+    .burger span {
+      position: absolute;
+      left: 10px;
+      width: 20px; height: 2px;
+      background-color: var(--clay-dark);
+      border-radius: 2px;
+      transition: transform 0.3s ease, top 0.3s ease, opacity 0.2s ease;
+    }
+    .burger span:nth-child(1) { top: 13px; }
+    .burger span:nth-child(2) { top: 19px; }
+    .burger span:nth-child(3) { top: 25px; }
+
+    /* =========================================================
+       6. HERO
+       ========================================================= */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.25rem 4rem;
+      overflow: hidden;
+      /* Многослойный фон: мягкий градиент + «зерно» глины */
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(198, 139, 89, 0.35), transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(160, 82, 45, 0.28), transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(92, 61, 46, 0.18), transparent 60%),
+        linear-gradient(135deg, var(--cream) 0%, #f5e6cf 100%);
+    }
+    /* Декоративный паттерн «зерна» */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(92,61,46,0.06) 1px, transparent 1.5px),
+        radial-gradient(circle at 80% 40%, rgba(92,61,46,0.05) 1px, transparent 1.5px),
+        radial-gradient(circle at 40% 80%, rgba(92,61,46,0.07) 1px, transparent 1.5px),
+        radial-gradient(circle at 90% 90%, rgba(92,61,46,0.05) 1px, transparent 1.5px);
+      background-size: 60px 60px, 80px 80px, 70px 70px, 90px 90px;
+      pointer-events: none;
+    }
+    /* Декоративный «круг» — отсылка к названию */
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -120px; top: 50%;
+      transform: translateY(-50%);
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--clay-light), var(--clay) 60%, var(--clay-dark));
+      opacity: 0.18;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1.25rem;
+      padding: 0.4rem 1rem;
+      background-color: rgba(255, 253, 249, 0.7);
+      border-radius: 999px;
+    }
+    .hero h1 {
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 .accent {
+      color: var(--clay);
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =========================================================
+       7. BUTTONS
+       ========================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.8rem;
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.3px;
+      border-radius: var(--radius-md);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .btn:focus-visible {
+      outline: 3px solid var(--clay);
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      /* Фон --clay-light, но текст тёмный для контраста (WCAG AA) */
+      background-color: var(--clay-light);
+      color: var(--clay-dark);
+      box-shadow:
+        0 4px 14px rgba(160, 82, 45, 0.25),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+    }
+    .btn-primary:hover {
+      background-color: var(--clay);
+      color: var(--warm-white);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(160, 82, 45, 0.35);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--clay-dark);
+      border-color: var(--clay-dark);
+    }
+    .btn-secondary:hover {
+      background-color: var(--clay-dark);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       8. ABOUT SECTION
+       ========================================================= */
+    .about-text {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      font-size: 1.08rem;
+      color: var(--text);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .feature {
+      text-align: center;
+      padding: 2rem 1.25rem;
+      background-color: var(--warm-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .feature-icon {
+      width: 72px; height: 72px;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sand), var(--clay-light));
+      color: var(--warm-white);
+    }
+    .feature-icon svg { width: 36px; height: 36px; }
+    .feature h3 { margin-bottom: 0.5rem; }
+    .feature p { color: var(--text-muted); font-size: 0.98rem; }
+
+    /* =========================================================
+       9. CATALOG
+       ========================================================= */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background-color: var(--warm-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-image {
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Разные оттенки для каждой категории — имитация разных изделий */
+    .product-image.mug       { background: linear-gradient(135deg, #d9b38c, #a0522d); }
+    .product-image.plate     { background: linear-gradient(135deg, #e8d5b7, #c68b59); }
+    .product-image.vase      { background: linear-gradient(135deg, #b8895f, #5c3d2e); }
+    .product-image.candle    { background: linear-gradient(135deg, #f0d9b5, #a0522d); }
+    .product-image.pot       { background: linear-gradient(135deg, #c6a57a, #7a5230); }
+    .product-image.set       { background: linear-gradient(135deg, #e0b88a, #8b4513); }
+
+    .product-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(0,0,0,0.15), transparent 55%);
+      pointer-events: none;
+    }
+    .product-image span {
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+    }
+
+    .product-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-body h3 { margin-bottom: 0.5rem; }
+    .product-body p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--clay);
+    }
+
+    /* =========================================================
+       10. MASTER CLASSES
+       ========================================================= */
+    .classes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .class-card {
+      background-color: var(--warm-white);
+      padding: 2rem 1.75rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border-left: 4px solid var(--clay);
+    }
+    .class-card h3 { margin-bottom: 0.75rem; color: var(--clay-dark); }
+    .class-card p { color: var(--text); margin-bottom: 1rem; }
+    .class-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(92,61,46,0.2);
+    }
+    .class-meta strong { color: var(--clay-dark); font-weight: 700; }
+
+    /* Форма записи */
+    .signup-form-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: var(--warm-white);
+      padding: 2.5rem 1.75rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+    .signup-form-wrap h3 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .signup-form-wrap > p {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .form-field { display: flex; flex-direction: column; }
+    .form-field label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--clay-dark);
+      margin-bottom: 0.4rem;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      padding: 0.8rem 1rem;
+      background-color: var(--cream);
+      border: 1.5px solid rgba(92,61,46,0.18);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      color: var(--text);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      font-family: inherit;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--clay);
+      box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.15);
+    }
+    .form-field textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    /* =========================================================
+       11. PROCESS / TIMELINE
+       ========================================================= */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    /* Вертикальная линия на мобильных */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 14px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--clay-light), var(--clay));
+      border-radius: 2px;
+    }
+
+    .timeline-step {
+      position: relative;
+      padding: 1.25rem 1.5rem;
+      background-color: var(--warm-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+    }
+    /* Кружок-маркер */
+    .timeline-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: -2.5rem;
+      top: 1.35rem;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background-color: var(--clay);
+      color: var(--warm-white);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px var(--cream);
+    }
+    .timeline-step h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+      color: var(--clay-dark);
+    }
+    .timeline-step p {
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      margin: 0;
+    }
+
+    /* =========================================================
+       12. CONTACTS & FOOTER
+       ========================================================= */
+    .contacts {
+      background-color: var(--clay-dark);
+      color: var(--cream);
+      padding: var(--section-py) 0 2rem;
+    }
+    .contacts h2 { color: var(--cream); }
+    .contacts .section-eyebrow { color: var(--clay-light); }
+    .contacts .section-head p { color: rgba(253, 246, 236, 0.75); }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-info h3 {
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+      font-size: 1.35rem;
+    }
+    .contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+      color: rgba(253, 246, 236, 0.92);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+    .contact-list svg {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      color: var(--clay-light);
+      margin-top: 2px;
+    }
+    .contact-list a:hover { color: var(--clay-light); }
+
+    .socials {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .social-link {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background-color: rgba(253, 246, 236, 0.08);
+      border: 1px solid rgba(253, 246, 236, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, transform 0.25s ease;
+    }
+    .social-link:hover {
+      background-color: var(--clay);
+      transform: translateY(-3px);
+    }
+    .social-link svg { width: 20px; height: 20px; color: var(--cream); }
+
+    /* Мини-форма в футере */
+    .contact-form {
+      background-color: rgba(253, 246, 236, 0.06);
+      border: 1px solid rgba(253, 246, 236, 0.12);
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+    }
+    .contact-form h3 { color: var(--cream); margin-bottom: 1rem; }
+    .contact-form .form-field label { color: var(--cream); }
+    .contact-form .form-field input,
+    .contact-form .form-field textarea {
+      background-color: rgba(253, 246, 236, 0.08);
+      border-color: rgba(253, 246, 236, 0.2);
+      color: var(--cream);
+    }
+    .contact-form .form-field input::placeholder,
+    .contact-form .form-field textarea::placeholder {
+      color: rgba(253, 246, 236, 0.45);
+    }
+    .contact-form .form-field input:focus,
+    .contact-form .form-field textarea:focus {
+      border-color: var(--clay-light);
+      box-shadow: 0 0 0 3px rgba(198, 139, 89, 0.25);
+    }
+
+    /* Подвал */
+    .site-footer {
+      border-top: 1px solid rgba(253, 246, 236, 0.12);
+      padding-top: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(253, 246, 236, 0.65);
+    }
+    .footer-nav a {
+      margin: 0 0.6rem;
+      color: rgba(253, 246, 236, 0.75);
+      transition: color 0.25s ease;
+    }
+    .footer-nav a:hover { color: var(--clay-light); }
+
+    .to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background-color: var(--clay);
+      color: var(--warm-white);
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: background-color 0.3s ease, transform 0.25s ease;
+    }
+    .to-top:hover {
+      background-color: var(--clay-light);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       13. ANIMATIONS (fade-in on scroll)
+       ========================================================= */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in.delay-1 { transition-delay: 0.12s; }
+    .fade-in.delay-2 { transition-delay: 0.24s; }
+    .fade-in.delay-3 { transition-delay: 0.36s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .fade-in { opacity: 1; transform: none; }
+    }
+
+    /* =========================================================
+       14. MEDIA QUERIES
+       ========================================================= */
+
+    /* ---- Планшет (≥ 768px) ---- */
+    @media (min-width: 768px) {
+      .container { padding: 0 2rem; }
+
+      .features { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+      .classes-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .form-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-grid .form-field.full { grid-column: 1 / -1; }
+
+      .contacts-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+
+      .site-footer { flex-direction: row; justify-content: space-between; text-align: left; }
+    }
+
+    /* ---- Десктоп (≥ 1024px) ---- */
+    @media (min-width: 1024px) {
+      .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+
+      /* Горизонтальная timeline */
+      .timeline {
+        flex-direction: row;
+        padding-left: 0;
+        gap: 0;
+        align-items: flex-start;
+      }
+      .timeline::before {
+        left: 0; right: 0;
+        top: 14px; bottom: auto;
+        width: auto; height: 2px;
+        background: linear-gradient(to right, var(--clay-light), var(--clay));
+      }
+      .timeline-step {
+        flex: 1;
+        margin: 2.5rem 0.5rem 0;
+        text-align: center;
+      }
+      .timeline-step::before {
+        left: 50%;
+        top: -2.5rem;
+        transform: translateX(-50%);
+        box-shadow: 0 0 0 4px var(--cream);
+      }
+    }
+
+    /* ---- Мобильная навигация ---- */
+    @media (max-width: 860px) {
+      .burger { display: block; }
+      .primary-nav {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background-color: var(--cream);
+        border-bottom: 1px solid rgba(92,61,46,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .primary-nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1.25rem 1rem;
+      }
+      .primary-nav li { border-bottom: 1px solid rgba(92,61,46,0.08); }
+      .primary-nav li:last-child { border-bottom: none; }
+      .primary-nav a {
+        display: block;
+        padding: 0.9rem 0;
+      }
+
+      /* Открытое меню */
+      .nav-toggle:checked ~ .primary-nav { max-height: 400px; }
+      .nav-toggle:checked ~ .burger span:nth-child(1) {
+        top: 19px; transform: rotate(45deg);
+      }
+      .nav-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+      .nav-toggle:checked ~ .burger span:nth-child(3) {
+        top: 19px; transform: rotate(-45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#top" class="logo" aria-label="Глиняный круг — на главную">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Глиняный круг</span>
+      </a>
+
+      <!-- Checkbox для бургер-меню (чистый CSS) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Открыть меню">
+      <label for="nav-toggle" class="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="primary-nav" aria-label="Главная навигация">
+        <ul>
+          <li><a href="#about">О мастерской</a></li>
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#classes">Мастер-классы</a></li>
+          <li><a href="#process">Процесс</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =========================================================
+         1. HERO
+         ========================================================= -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Авторская керамика</span>
+        <h1 id="hero-title">
+          Глиняный круг —<br>
+          <span class="accent">истории, рассказанные глиной</span>
+        </h1>
+        <p class="hero-subtitle">
+          Небольшая московская мастерская, где из комочка земли рождаются кружки,
+          вазы и декор — каждый со своим характером и тёплыми руками мастера.
+        </p>
+        <div class="cta-group">
+          <a href="#classes" class="btn btn-primary">Записаться на мастер-класс</a>
+          <a href="#catalog" class="btn btn-secondary">Смотреть каталог</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2. О МАСТЕРСКОЙ
+         ========================================================= -->
+    <section class="bg-sand" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-eyebrow">О нас</span>
+          <h2 id="about-title">Мастерская с душой</h2>
+        </div>
+
+        <p class="about-text fade-in">
+          «Глиняный круг» появился в 2018 году как уютная мастерская на двоих —
+          сегодня здесь работают четыре мастера, но философия осталась прежней:
+          никакого конвейера, только ручная работа, натуральные материалы и
+          внимание к каждой детали. Мы верим, что вещь, сделанная руками,
+          приносит в дом особое тепло — то, которое нельзя купить в масс-маркете.
+        </p>
+
+        <div class="features">
+          <!-- Преимущество 1 -->
+          <article class="feature fade-in delay-1">
+            <div class="feature-icon" aria-hidden="true">
+              <!-- SVG: ладонь -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 11V6a2 2 0 0 0-4 0v5"/>
+                <path d="M14 10V4a2 2 0 0 0-4 0v6"/>
+                <path d="M10 10.5V6a2 2 0 0 0-4 0v8"/>
+                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+              </svg>
+            </div>
+            <h3>100 % ручная работа</h3>
+            <p>Каждое изделие мастер создаёт на гончарном круге или лепит вручную — без штампов и форм.</p>
+          </article>
+
+          <!-- Преимущество 2 -->
+          <article class="feature fade-in delay-2">
+            <div class="feature-icon" aria-hidden="true">
+              <!-- SVG: лист -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c.9 9.82-4 14-8 17.04Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+              </svg>
+            </div>
+            <h3>Натуральные глазури</h3>
+            <p>Используем безопасные глазури на минеральной основе — приятные на ощупь и подходящие для пищи.</p>
+          </article>
+
+          <!-- Преимущество 3 -->
+          <article class="feature fade-in delay-3">
+            <div class="feature-icon" aria-hidden="true">
+              <!-- SVG: звезда/искра -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3>Каждое изделие уникально</h3>
+            <p>Два одинаковых предмета не существует — в этом и есть ценность ручной работы.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. КАТАЛОГ ИЗДЕЛИЙ
+         ========================================================= -->
+    <section class="bg-cream" id="catalog" aria-labelledby="catalog-title">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-eyebrow">Каталог</span>
+          <h2 id="catalog-title">Наши изделия</h2>
+          <p>Посуда, декор и подарки — всё сделано вручную в нашей мастерской. Каждую вещь можно заказать в любом цвете и размере.</p>
+        </div>
+
+        <div class="catalog-grid">
+          <!-- Карточка 1: Кружка -->
+          <article class="product-card fade-in">
+            <figure class="product-image mug" aria-label="Кружка «Утро»">
+              <span aria-hidden="true">☕</span>
+            </figure>
+            <div class="product-body">
+              <h3>Кружка «Утро»</h3>
+              <p>Тёплая матовая кружка 350 мл с удобной ручкой — идеальна для первого кофе дня.</p>
+              <div class="product-price">1 400 ₽</div>
+            </div>
+          </article>
+
+          <!-- Карточка 2: Тарелка -->
+          <article class="product-card fade-in">
+            <figure class="product-image plate" aria-label="Тарелка «Солнце»">
+              <span aria-hidden="true">🍽</span>
+            </figure>
+            <div class="product-body">
+              <h3>Тарелка «Солнце»</h3>
+              <p>Глубокая тарелка с глазурью цвета охры — для уютных завтраков и обедов.</p>
+              <div class="product-price">1 800 ₽</div>
+            </div>
+          </article>
+
+          <!-- Карточка 3: Ваза -->
+          <article class="product-card fade-in">
+            <figure class="product-image vase" aria-label="Ваза «Тишина»">
+              <span aria-hidden="true">🏺</span>
+            </figure>
+            <div class="product-body">
+              <h3>Ваза «Тишина»</h3>
+              <p>Высокая ваза с плавными изгибами — для сухоцветов или как самостоятельный декор.</p>
+              <div class="product-price">3 200 ₽</div>
+            </div>
+          </article>
+
+          <!-- Карточка 4: Подсвечник -->
+          <article class="product-card fade-in">
+            <figure class="product-image candle" aria-label="Подсвечник «Тепло»">
+              <span aria-hidden="true">🕯</span>
+            </figure>
+            <div class="product-body">
+              <h3>Подсвечник «Тепло»</h3>
+              <p>Массивный подсвечник для толстых свечей — создаёт атмосферу тихого вечера.</p>
+              <div class="product-price">1 100 ₽</div>
+            </div>
+          </article>
+
+          <!-- Карточка 5: Кашпо -->
+          <article class="product-card fade-in">
+            <figure class="product-image pot" aria-label="Кашпо «Корни»">
+              <span aria-hidden="true">🌱</span>
+            </figure>
+            <div class="product-body">
+              <h3>Кашпо «Корни»</h3>
+              <p>Керамическое кашпо с дренажным отверстием — для суккулентов и небольших растений.</p>
+              <div class="product-price">1 600 ₽</div>
+            </div>
+          </article>
+
+          <!-- Карточка 6: Подарочный набор -->
+          <article class="product-card fade-in">
+            <figure class="product-image set" aria-label="Набор «Праздник»">
+              <span aria-hidden="true">🎁</span>
+            </figure>
+            <div class="product-body">
+              <h3>Набор «Праздник»</h3>
+              <p>Две кружки и тарелка в льняной упаковке — готовый подарок для близких.</p>
+              <div class="product-price">4 500 ₽</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. МАСТЕР-КЛАССЫ
+         ========================================================= -->
+    <section class="bg-sand" id="classes" aria-labelledby="classes-title">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-eyebrow">Мастер-классы</span>
+          <h2 id="classes-title">Создайте керамику своими руками</h2>
+          <p>Приходите к нам в мастерскую — мы научим работать с глиной, покажем все этапы и поможем увезти домой вещь, сделанную вашими руками.</p>
+        </div>
+
+        <div class="classes-grid">
+          <!-- Формат 1 -->
+          <article class="class-card fade-in delay-1">
+            <h3>Для взрослых</h3>
+            <p>Камерная группа до 6 человек. Вы поработаете за гончарным кругом, создадите 1–2 изделия и заберёте их после обжига (через 2 недели).</p>
+            <div class="class-meta">
+              <span><strong>Когда:</strong> пт, сб</span>
+              <span><strong>Время:</strong> 18:30 – 21:30</span>
+              <span><strong>Длительность:</strong> 3 часа</span>
+              <span><strong>Стоимость:</strong> 3 500 ₽</span>
+            </div>
+          </article>
+
+          <!-- Формат 2 -->
+          <article class="class-card fade-in delay-2">
+            <h3>Для детей и родителей</h3>
+            <p>Тёплый семейный формат для детей от 6 лет вместе с родителями. Лепим, расписываем, играем с глиной — и забираем готовые изделия.</p>
+            <div class="class-meta">
+              <span><strong>Когда:</strong> вс</span>
+              <span><strong>Время:</strong> 12:00 – 14:00</span>
+              <span><strong>Длительность:</strong> 2 часа</span>
+              <span><strong>Стоимость:</strong> 2 500 ₽ / семья</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Форма записи -->
+        <div class="signup-form-wrap fade-in">
+          <h3>Запись на мастер-класс</h3>
+          <p>Оставьте контакты — мы перезвоним в течение дня и подберём удобную дату.</p>
+          <form class="form-grid" action="#" method="post" novalidate>
+            <div class="form-field">
+              <label for="signup-name">Имя</label>
+              <input type="text" id="signup-name" name="name" required minlength="2" placeholder="Как к вам обращаться?">
+            </div>
+            <div class="form-field">
+              <label for="signup-phone">Телефон</label>
+              <input type="tel" id="signup-phone" name="phone" required
+                     pattern="[\+\-\(\) 0-9]{10,18}" placeholder="+7 (___) ___-__-__">
+            </div>
+            <div class="form-field full">
+              <label for="signup-email">E-mail</label>
+              <input type="email" id="signup-email" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-field full">
+              <label for="signup-class">Выберите мастер-класс</label>
+              <select id="signup-class" name="class" required>
+                <option value="" disabled selected>— выберите формат —</option>
+                <option value="adult">Для взрослых (пт, сб) — 3 500 ₽</option>
+                <option value="family">Для детей и родителей (вс) — 2 500 ₽</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit full">Записаться</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. ПРОЦЕСС СОЗДАНИЯ
+         ========================================================= -->
+    <section class="bg-cream" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-eyebrow">Процесс</span>
+          <h2 id="process-title">Как рождается изделие</h2>
+          <p>От комочка глины до готовой вещи — шесть этапов, каждый из которых нельзя пропустить.</p>
+        </div>
+
+        <div class="timeline" role="list">
+          <div class="timeline-step fade-in" data-step="1" role="listitem">
+            <h3>Замес глины</h3>
+            <p>Готовим массу нужной плотности, чтобы она была послушной в руках.</p>
+          </div>
+          <div class="timeline-step fade-in" data-step="2" role="listitem">
+            <h3>Формовка</h3>
+            <p>На гончарном круге или вручную придаём глине форму будущего изделия.</p>
+          </div>
+          <div class="timeline-step fade-in" data-step="3" role="listitem">
+            <h3>Сушка</h3>
+            <p>Медленно, при комнатной температуре — чтобы глина не потрескалась.</p>
+          </div>
+          <div class="timeline-step fade-in" data-step="4" role="listitem">
+            <h3>Первый обжиг</h3>
+            <p>При 900 °C глина становится прочной и готовой принять глазурь.</p>
+          </div>
+          <div class="timeline-step fade-in" data-step="5" role="listitem">
+            <h3>Глазировка</h3>
+            <p>Покрываем изделие натуральной глазурью — вручную, кистью или окунанием.</p>
+          </div>
+          <div class="timeline-step fade-in" data-step="6" role="listitem">
+            <h3>Финальный обжиг</h3>
+            <p>При 1250 °C глазурь спекается, и вещь обретает свой окончательный вид.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. КОНТАКТЫ И ПОДВАЛ
+         ========================================================= -->
+    <section class="contacts" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-eyebrow">Контакты</span>
+          <h2 id="contacts-title">Приходите в гости</h2>
+          <p>Мы всегда рады гостям — заходите посмотреть мастерскую, выбрать изделие или просто выпить чаю.</p>
+        </div>
+
+        <div class="contacts-grid">
+          <!-- Информация -->
+          <div class="contact-info fade-in">
+            <h3>Мастерская «Глиняный круг»</h3>
+            <ul class="contact-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>Москва, ул. Гончарная, 12, 2-й этаж, студия 4</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>Вт–Вс: 11:00 – 21:00<br>Пн: выходной</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/>
+                </svg>
+                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="m22 7-10 6L2 7"/>
+                </svg>
+                <a href="mailto:hello@glinanykrug.ru">hello@glinanykrug.ru</a>
+              </li>
+            </ul>
+
+            <div class="socials" aria-label="Мы в соцсетях">
+              <a href="#" class="social-link" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M9.78 18.6l.86-3.35 6.37-5.75c.28-.25-.06-.39-.43-.16l-7.87 4.96-3.39-1.06c-.73-.23-.74-.73-.15-.96l13.25-5.1c.61-.24 1.13.15.92 1.08L16.9 15.1l1.15 4.3c.14.52-.17.74-.67.5l-3.58-2.64-1.72 1.7c-.2.2-.37.34-.76.34z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="ВКонтакте">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12.785 16.241s.288-.032.436-.192c.136-.148.132-.427.132-.427s-.02-1.304.587-1.496c.598-.188 1.368 1.258 2.184 1.814.616.42 1.084.328 1.084.328l2.178-.032s1.14-.07.6-.964c-.044-.073-.314-.661-1.618-1.868-1.366-1.264-1.183-1.06.462-3.246.998-1.328 1.398-2.14 1.272-2.49-.12-.332-.86-.244-.86-.244l-2.45.016s-.182-.025-.316.056c-.132.079-.216.263-.216.263s-.388 1.032-.904 1.91c-1.09 1.854-1.526 1.952-1.704 1.838-.416-.268-.312-1.074-.312-1.648 0-1.79.272-2.536-.53-2.73-.266-.064-.462-.106-1.142-.113-.872-.009-1.608.003-2.024.207-.278.136-.492.44-.362.457.162.022.528.099.722.362.25.34.24 1.104.24 1.104s.144 2.108-.336 2.37c-.33.18-.782-.188-1.75-1.882-.496-.868-.87-1.828-.87-1.828s-.072-.176-.202-.27c-.158-.114-.378-.15-.378-.15l-2.328.016s-.35.01-.478.162c-.114.134-.01.414-.01.414s1.816 4.244 3.872 6.384c1.886 1.964 4.028 1.834 4.028 1.834h.97z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Мини-форма -->
+          <div class="contact-form fade-in">
+            <h3>Напишите нам</h3>
+            <form class="form-grid" action="#" method="post">
+              <div class="form-field full">
+                <label for="contact-name">Имя</label>
+                <input type="text" id="contact-name" name="name" required minlength="2" placeholder="Ваше имя">
+              </div>
+              <div class="form-field full">
+                <label for="contact-message">Сообщение</label>
+                <textarea id="contact-message" name="message" required minlength="5" placeholder="Расскажите, чем мы можем помочь…"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary form-submit full">Написать</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Подвал -->
+        <footer class="site-footer" role="contentinfo">
+          <div>© 2026 Мастерская «Глиняный круг». Все изделия сделаны с любовью.</div>
+          <nav class="footer-nav" aria-label="Навигация по странице">
+            <a href="#about">О нас</a>
+            <a href="#catalog">Каталог</a>
+            <a href="#classes">Мастер-классы</a>
+            <a href="#contacts">Контакты</a>
+          </nav>
+          <a href="#top" class="to-top" aria-label="Наверх">
+            <span>Наверх</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 15l-6-6-6 6"/>
+            </svg>
+          </a>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* =========================================================
+       1. IntersectionObserver — плавное появление блоков
+       ========================================================= */
+    (function () {
+      var items = document.querySelectorAll('.fade-in');
+      if (!('IntersectionObserver' in window)) {
+        // Фолбэк: сразу показываем всё
+        items.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      items.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* =========================================================
+       2. Закрытие бургер-меню при клике по якорю
+       ========================================================= */
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var links = document.querySelectorAll('.primary-nav a');
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (toggle.checked) toggle.checked = false;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

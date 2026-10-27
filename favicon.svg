@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Глиняный круг">
+  <defs>
+    <radialGradient id="g" cx="35%" cy="30%" r="85%">
+      <stop offset="0%" stop-color="#C68B59"/>
+      <stop offset="55%" stop-color="#A0522D"/>
+      <stop offset="100%" stop-color="#5C3D2E"/>
+    </radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#g)"/>
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#FDF6EC" stroke-width="3" opacity=".9"/>
+  <circle cx="32" cy="32" r="17" fill="none" stroke="#FDF6EC" stroke-width="2" opacity=".55"/>
+  <circle cx="32" cy="32" r="7" fill="#FDF6EC" opacity=".35"/>
+</svg>
